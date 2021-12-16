@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Demo.Cinema.DAL.Handlers;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
@@ -27,12 +28,33 @@ namespace Demo.Cinema.DAL.Repositories
 
         public IEnumerable<e.Cinema> Get()
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT [Id],[Nom],[Ville] FROM [Cinema]";
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read()) yield return Mapper.convert(reader);
+                }
+            }
         }
 
         public e.Cinema Get(int id)
         {
-            throw new NotImplementedException();
+            using(SqlConnection connection = new SqlConnection(_connString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT [Id],[Nom],[Ville] FROM [Cinema] WHERE [Id] = @id";
+                    SqlParameter p_id = new SqlParameter() { ParameterName = "id", Value = id };
+                    command.Parameters.Add(p_id);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read()) return Mapper.convert(reader);
+                    return null;
+                }
+            }
         }
 
         public int Insert(e.Cinema entity)
