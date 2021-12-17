@@ -68,8 +68,8 @@ namespace Demo.CinemaProject.DAL.Repositories
             {
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = "SP_Film_Insert";
                     command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.CommandText = "SP_Film_Insert";
                     //Parameters...
                     SqlParameter p_titre = new SqlParameter("titre", entity.Titre);
                     command.Parameters.Add(p_titre);
