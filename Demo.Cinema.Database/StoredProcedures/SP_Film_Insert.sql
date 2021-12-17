@@ -3,5 +3,5 @@
 	@date DATE
 AS
 	INSERT INTO [Film]([Titre],[DateSortie])
+	OUTPUT [inserted].[Id]
 	VALUES (@titre, @date)
-RETURN 0

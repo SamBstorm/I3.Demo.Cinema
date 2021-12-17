@@ -1,16 +1,14 @@
-﻿using Demo.Cinema.DAL.Handlers;
+﻿using Demo.CinemaProject.DAL.Handlers;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
-using e = Demo.Cinema.DAL.Entities;
+using Demo.CinemaProject.DAL.Entities;
 
-namespace Demo.Cinema.DAL.Repositories
+namespace Demo.CinemaProject.DAL.Repositories
 {
-    public class CinemaService : IRepository<e.Cinema, int>
+    public class CinemaService : ServiceBase, ICinemaRepository
     {
-        private string _connString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Demo.Cinema.Database;Integrated Security=True";
-
         public void Delete(int id)
         {
             using (SqlConnection connection = new SqlConnection(_connString))
@@ -26,7 +24,7 @@ namespace Demo.Cinema.DAL.Repositories
             }
         }
 
-        public IEnumerable<e.Cinema> Get()
+        public IEnumerable<Cinema> Get()
         {
             using (SqlConnection connection = new SqlConnection(_connString))
             {
@@ -35,12 +33,12 @@ namespace Demo.Cinema.DAL.Repositories
                     command.CommandText = "SELECT [Id],[Nom],[Ville] FROM [Cinema]";
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read()) yield return Mapper.convert(reader);
+                    while (reader.Read()) yield return Mapper.ToCinema(reader);
                 }
             }
         }
 
-        public e.Cinema Get(int id)
+        public Cinema Get(int id)
         {
             using(SqlConnection connection = new SqlConnection(_connString))
             {
@@ -51,13 +49,47 @@ namespace Demo.Cinema.DAL.Repositories
                     command.Parameters.Add(p_id);
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read()) return Mapper.convert(reader);
+                    if (reader.Read()) return Mapper.ToCinema(reader);
                     return null;
                 }
             }
         }
 
-        public int Insert(e.Cinema entity)
+        public IEnumerable<Cinema> GetByDiffusion(int id_movie, DateTime DateDiffusion)
+        {
+            using (SqlConnection connection = new SqlConnection(_connString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT [Cinema].[Id],[Nom],[Ville] FROM [Cinema] JOIN [Diffusion] ON [Cinema].[Id] = [Diffusion].[Cinema_Id] WHERE [Diffusion].[Film_Id] = @id_movie AND [Diffusion].[DateDiffusion] = @date";
+                    SqlParameter p_id_movie = new SqlParameter() { ParameterName = "id_movie", Value = id_movie };
+                    command.Parameters.Add(p_id_movie);
+                    SqlParameter p_date = new SqlParameter() { ParameterName = "date", Value = DateDiffusion };
+                    command.Parameters.Add(p_date);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read()) yield return Mapper.ToCinema(reader);
+                }
+            }
+        }
+
+        public IEnumerable<Cinema> GetByFilm(int id_movie)
+        {
+            using (SqlConnection connection = new SqlConnection(_connString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT [Cinema].[Id],[Nom],[Ville] FROM [Cinema] JOIN [Diffusion] ON [Cinema].[Id] = [Diffusion].[Cinema_Id] WHERE [Diffusion].[Film_Id] = @id_movie";
+                    SqlParameter p_id_movie = new SqlParameter() { ParameterName = "id_movie", Value = id_movie };
+                    command.Parameters.Add(p_id_movie);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read()) yield return Mapper.ToCinema(reader);
+                }
+            }
+        }
+
+        public int Insert(Cinema entity)
         {
             using (SqlConnection connection = new SqlConnection(_connString))
             {
@@ -74,7 +106,7 @@ namespace Demo.Cinema.DAL.Repositories
             }
         }
 
-        public void Update(int id, e.Cinema entity)
+        public void Update(int id, Cinema entity)
         {
             using(SqlConnection connection = new SqlConnection(_connString))
             {

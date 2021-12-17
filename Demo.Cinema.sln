@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Demo.Cinema.Database", "Demo.Cinema.Database\Demo.Cinema.Database.sqlproj", "{33E06C5E-B206-4542-BF8C-25457C868B5C}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Demo.CinemaProject.Database", "Demo.Cinema.Database\Demo.CinemaProject.Database.sqlproj", "{33E06C5E-B206-4542-BF8C-25457C868B5C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{827384ED-00F6-41B8-AB6A-7DB6C8E77054}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.Cinema.DAL", "Demo.Cinema.DAL\Demo.Cinema.DAL.csproj", "{E5187288-8B3B-44DC-ACDE-29BB7583435B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demo.CinemaProject.DAL", "Demo.Cinema.DAL\Demo.CinemaProject.DAL.csproj", "{E5187288-8B3B-44DC-ACDE-29BB7583435B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo.CinemaProject.Common", "Demo.CinemaProject.Common\Demo.CinemaProject.Common.csproj", "{31922E44-E085-4E60-A4D4-AB33FA22DBE5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{E5187288-8B3B-44DC-ACDE-29BB7583435B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5187288-8B3B-44DC-ACDE-29BB7583435B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5187288-8B3B-44DC-ACDE-29BB7583435B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31922E44-E085-4E60-A4D4-AB33FA22DBE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31922E44-E085-4E60-A4D4-AB33FA22DBE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31922E44-E085-4E60-A4D4-AB33FA22DBE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31922E44-E085-4E60-A4D4-AB33FA22DBE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

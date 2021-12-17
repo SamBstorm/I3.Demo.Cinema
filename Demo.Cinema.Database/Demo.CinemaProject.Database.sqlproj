@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <Name>Demo.Cinema.Database</Name>
+    <Name>Demo.CinemaProject.Database</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{33e06c5e-b206-4542-bf8c-25457c868b5c}</ProjectGuid>
@@ -70,6 +70,6 @@
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Demo.Cinema.Database.publish.xml" />
+    <None Include="Demo.CinemaProject.Database.publish.xml" />
   </ItemGroup>
 </Project>

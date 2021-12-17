@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Demo.Cinema.DAL.Entities
+namespace Demo.CinemaProject.DAL.Entities
 {
     public class Film
     {
