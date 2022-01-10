@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using Demo.CinemaProject.DAL.Entities;
 using System.Text;
+using System.Data.SqlClient;
 
 namespace Demo.CinemaProject.DAL.Handlers
 {
@@ -26,6 +27,18 @@ namespace Demo.CinemaProject.DAL.Handlers
                 Id = (int)record[nameof(Film.Id)],
                 Titre = (string)record[nameof(Film.Titre)],
                 DateSortie = (DateTime)record[nameof(Film.DateSortie)]
+            };
+        }
+
+        public static Diffusion ToDiffusion(IDataRecord record)
+        {
+            if (record is null) return null;
+            return new Diffusion
+            {
+                Id = (int)record[nameof(Diffusion.Id)],
+                DateDiffusion = (DateTime)record[nameof(Diffusion.DateDiffusion)],
+                Cinema_Id = (int)record[nameof(Diffusion.Cinema_Id)],
+                Film_Id = (int)record[nameof(Diffusion.Film_Id)]
             };
         }
     }
