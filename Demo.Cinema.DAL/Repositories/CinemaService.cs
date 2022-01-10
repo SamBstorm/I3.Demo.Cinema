@@ -73,6 +73,23 @@ namespace Demo.CinemaProject.DAL.Repositories
             }
         }
 
+        public Cinema GetByDiffusionId(int diffusionId)
+        {
+            using (SqlConnection connection = new SqlConnection(_connString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT [Cinema].[Id],[Nom],[Ville] FROM [Cinema] JOIN [Diffusion] ON [Cinema].[Id] = [Cinema_id] WHERE [Diffusion].[Id] = @id";
+                    SqlParameter p_id = new SqlParameter() { ParameterName = "id", Value = diffusionId };
+                    command.Parameters.Add(p_id);
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read()) return Mapper.ToCinema(reader);
+                    return null;
+                }
+            }
+        }
+
         public IEnumerable<Cinema> GetByFilm(int id_movie)
         {
             using (SqlConnection connection = new SqlConnection(_connString))

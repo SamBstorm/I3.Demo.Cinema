@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Demo.CinemaProject.DAL.Repositories
 {
-    public interface IFilmRepository<TFilm> : IRepository<TFilm, int> 
+    public interface IFilmRepository<TFilm> : IRepository<TFilm, int> ,
+        IGetByDiffusionRepository<TFilm>
     {
         public IEnumerable<TFilm> GetByYear(int year);
     }

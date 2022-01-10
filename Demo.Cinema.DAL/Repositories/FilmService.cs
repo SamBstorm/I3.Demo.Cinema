@@ -62,6 +62,25 @@ namespace Demo.CinemaProject.DAL.Repositories
             }
         }
 
+        public Film GetByDiffusionId(int diffusionId)
+        {
+            using (SqlConnection connection = new SqlConnection(_connString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT [Film].[Id], [Titre], [DateSortie] FROM [Film] JOIN [Diffusion] ON [Film].[Id] = [Film_id] WHERE [Diffusion].[Id] = @id";
+                    //Parameters...
+                    SqlParameter p_id = new SqlParameter("id", diffusionId);
+                    command.Parameters.Add(p_id);
+                    connection.Open();
+                    //Choose Execution method
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read()) return Mapper.ToFilm(reader);
+                    return null;
+                }
+            }
+        }
+
         public IEnumerable<Film> GetByYear(int year)
         {
             throw new NotImplementedException();

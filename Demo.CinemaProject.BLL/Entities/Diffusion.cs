@@ -6,6 +6,8 @@ namespace Demo.CinemaProject.BLL.Entities
     {
         public int Id { get; set; }
         public DateTime DateDiffusion { get; set; }
+        //public int Cinema_Id { get; set; } 
+        //public int Film_Id { get; set; }
         public Cinema Cinema { get; set; }
         public Film Film { get; set; }
 
