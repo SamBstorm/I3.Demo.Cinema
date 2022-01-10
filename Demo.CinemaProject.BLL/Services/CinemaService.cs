@@ -1,7 +1,9 @@
 ﻿using Demo.CinemaProject.BLL.Entities;
+using Demo.CinemaProject.BLL.Handlers;
 using Demo.CinemaProject.DAL.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Demo.CinemaProject.BLL.Services
@@ -16,37 +18,37 @@ namespace Demo.CinemaProject.BLL.Services
         }
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _cinemaRepository.Delete(id);
         }
 
         public Cinema Get(int id)
         {
-            throw new NotImplementedException();
+            return _cinemaRepository.Get(id).ToBLL();
         }
 
         public IEnumerable<Cinema> Get()
         {
-            throw new NotImplementedException();
+            return _cinemaRepository.Get().Select(c => c.ToBLL());
         }
 
         public IEnumerable<Cinema> GetByDiffusion(int id_movie, DateTime DateDiffusion)
         {
-            throw new NotImplementedException();
+            return _cinemaRepository.GetByDiffusion(id_movie, DateDiffusion).Select(c => c.ToBLL());
         }
 
         public IEnumerable<Cinema> GetByFilm(int id_movie)
         {
-            throw new NotImplementedException();
+            return _cinemaRepository.GetByFilm(id_movie).Select(c => c.ToBLL());
         }
 
         public int Insert(Cinema entity)
         {
-            throw new NotImplementedException();
+            return _cinemaRepository.Insert(entity.ToDAL());
         }
 
         public void Update(int id, Cinema entity)
         {
-            throw new NotImplementedException();
+            _cinemaRepository.Update(id, entity.ToDAL());
         }
     }
 }
