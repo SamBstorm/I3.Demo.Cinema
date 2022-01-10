@@ -83,7 +83,20 @@ namespace Demo.CinemaProject.DAL.Repositories
 
         public IEnumerable<Film> GetByYear(int year)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connString))
+            {
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "SELECT [Id], [Titre], [DateSortie] FROM [Film] WHERE YEAR([DateSortie]) = @year";
+                    //Parameters...
+                    SqlParameter p_year = new SqlParameter("year", year);
+                    command.Parameters.Add(p_year);
+                    connection.Open();
+                    //Choose Execution method
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read()) yield return Mapper.ToFilm(reader);
+                }
+            }
         }
 
         public int Insert(Film entity)
