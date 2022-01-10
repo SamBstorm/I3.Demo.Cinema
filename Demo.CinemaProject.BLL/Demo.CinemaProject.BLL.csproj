@@ -5,4 +5,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Demo.Cinema.DAL\Demo.CinemaProject.DAL.csproj" />
+    <ProjectReference Include="..\Demo.CinemaProject.Common\Demo.CinemaProject.Common.csproj" />
+  </ItemGroup>
+
 </Project>
