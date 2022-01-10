@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Demo.CinemaProject.DAL.Repositories
 {
-    public class FilmService : ServiceBase, IRepository<Film, int>
+    public class FilmService : ServiceBase, IFilmRepository<Film>
     {
         public void Delete(int id)
         {
@@ -60,6 +60,11 @@ namespace Demo.CinemaProject.DAL.Repositories
                     return null;
                 }
             }
+        }
+
+        public IEnumerable<Film> GetByYear(int year)
+        {
+            throw new NotImplementedException();
         }
 
         public int Insert(Film entity)

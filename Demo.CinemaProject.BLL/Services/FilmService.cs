@@ -1,44 +1,51 @@
 ﻿using Demo.CinemaProject.BLL.Entities;
 using Demo.CinemaProject.BLL.Handlers;
 using Demo.CinemaProject.Common.Repositories;
+using Demo.CinemaProject.DAL.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Demo.CinemaProject.BLL.Services
 {
-    public class FilmService : IRepository<Film, int>
+    public class FilmService : IFilmRepository<Film>
     {
-        private readonly IRepository<DAL.Entities.Film,int> _filmRepository;
+        private readonly IFilmRepository<DAL.Entities.Film> _filmRepository;
 
-        public FilmService(IRepository<DAL.Entities.Film, int> repository)
+        public FilmService(IFilmRepository<DAL.Entities.Film> repository)
         {
             _filmRepository = repository;
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _filmRepository.Delete(id);
         }
 
-        public Film Get(int tid)
+        public Film Get(int id)
         {
-            return _filmRepository.Get(tid).ToBLL();
+            return _filmRepository.Get(id).ToBLL();
         }
 
         public IEnumerable<Film> Get()
         {
-            throw new NotImplementedException();
+           return _filmRepository.Get().Select(f => f.ToBLL());
+        }
+
+        public IEnumerable<Film> GetByYear(int year)
+        {
+            return _filmRepository.GetByYear(year).Select(f=> f.ToBLL());
         }
 
         public int Insert(Film entity)
         {
-            throw new NotImplementedException();
+            return _filmRepository.Insert(entity.ToDAL());
         }
 
         public void Update(int id, Film entity)
         {
-            throw new NotImplementedException();
+            _filmRepository.Update(id, entity.ToDAL());
         }
     }
 }

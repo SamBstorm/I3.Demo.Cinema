@@ -7,7 +7,7 @@ using Demo.CinemaProject.DAL.Entities;
 
 namespace Demo.CinemaProject.DAL.Repositories
 {
-    public class CinemaService : ServiceBase, ICinemaRepository
+    public class CinemaService : ServiceBase, ICinemaRepository<Cinema>
     {
         public void Delete(int id)
         {

@@ -6,9 +6,9 @@ using Demo.CinemaProject.DAL.Entities;
 
 namespace Demo.CinemaProject.DAL.Repositories
 {
-    public interface ICinemaRepository : IRepository<Cinema,int>
+    public interface ICinemaRepository<TCinema> : IRepository<TCinema,int>
     {
-        IEnumerable<Cinema> GetByDiffusion(int id_movie, DateTime DateDiffusion);
-        IEnumerable<Cinema> GetByFilm(int id_movie);
+        IEnumerable<TCinema> GetByDiffusion(int id_movie, DateTime DateDiffusion);
+        IEnumerable<TCinema> GetByFilm(int id_movie);
     }
 }
