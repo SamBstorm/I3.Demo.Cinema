@@ -54,8 +54,8 @@ namespace Demo.CinemaProject.BLL.Handlers
             return new B.Diffusion(
                 entity.Id,
                 entity.DateDiffusion,
-                null,
-                null
+                entity.Cinema_Id,
+                entity.Film_Id
                 );
         }
 
