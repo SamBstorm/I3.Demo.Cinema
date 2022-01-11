@@ -20,7 +20,7 @@ namespace Demo.CinemaProject.ASP.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index","Cinema");
         }
 
         public IActionResult Privacy()

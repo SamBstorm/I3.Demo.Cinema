@@ -1,3 +1,6 @@
+using Demo.CinemaProject.BLL.Entities;
+using Demo.CinemaProject.BLL.Services;
+using Demo.CinemaProject.Common.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +26,13 @@ namespace Demo.CinemaProject.ASP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddScoped<ICinemaRepository<DAL.Entities.Cinema>, DAL.Repositories.CinemaService>();
+            services.AddScoped<IFilmRepository<DAL.Entities.Film>, DAL.Repositories.FilmService>();
+            services.AddScoped<IDiffusionRepository<DAL.Entities.Diffusion>, DAL.Repositories.DiffusionService>();
+            services.AddScoped<ICinemaRepository<Cinema>, CinemaService>();
+            services.AddScoped<IFilmRepository<Film>, FilmService>();
+            services.AddScoped<IDiffusionRepository<Diffusion>, DiffusionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
