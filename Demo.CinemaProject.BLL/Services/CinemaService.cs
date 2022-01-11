@@ -1,5 +1,6 @@
 ﻿using Demo.CinemaProject.BLL.Entities;
 using Demo.CinemaProject.BLL.Handlers;
+using Demo.CinemaProject.Common.Repositories;
 using Demo.CinemaProject.DAL.Repositories;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,11 @@ namespace Demo.CinemaProject.BLL.Services
         public IEnumerable<Cinema> GetByDiffusion(int id_movie, DateTime DateDiffusion)
         {
             return _cinemaRepository.GetByDiffusion(id_movie, DateDiffusion).Select(c => c.ToBLL());
+        }
+
+        public Cinema GetByDiffusionId(int diffusionId)
+        {
+            return _cinemaRepository.GetByDiffusionId(diffusionId).ToBLL();
         }
 
         public IEnumerable<Cinema> GetByFilm(int id_movie)

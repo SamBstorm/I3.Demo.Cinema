@@ -33,6 +33,11 @@ namespace Demo.CinemaProject.BLL.Services
            return _filmRepository.Get().Select(f => f.ToBLL());
         }
 
+        public Film GetByDiffusionId(int diffusionId)
+        {
+            return _filmRepository.GetByDiffusionId(diffusionId).ToBLL();
+        }
+
         public IEnumerable<Film> GetByYear(int year)
         {
             return _filmRepository.GetByYear(year).Select(f=> f.ToBLL());

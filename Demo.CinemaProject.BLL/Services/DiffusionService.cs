@@ -1,5 +1,6 @@
 ﻿using Demo.CinemaProject.BLL.Entities;
 using Demo.CinemaProject.BLL.Handlers;
+using Demo.CinemaProject.Common.Repositories;
 using Demo.CinemaProject.DAL.Repositories;
 using System;
 using System.Collections.Generic;

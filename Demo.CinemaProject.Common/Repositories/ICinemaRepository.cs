@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Demo.CinemaProject.Common.Repositories;
-using Demo.CinemaProject.DAL.Entities;
 
-namespace Demo.CinemaProject.DAL.Repositories
+namespace Demo.CinemaProject.Common.Repositories
 {
     public interface ICinemaRepository<TCinema> : IRepository<TCinema,int>,
         IGetByDiffusionRepository<TCinema>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 using Demo.CinemaProject.DAL.Entities;
+using Demo.CinemaProject.Common.Repositories;
 
 namespace Demo.CinemaProject.DAL.Repositories
 {

@@ -1,4 +1,5 @@
-﻿using Demo.CinemaProject.DAL.Entities;
+﻿using Demo.CinemaProject.Common.Repositories;
+using Demo.CinemaProject.DAL.Entities;
 using Demo.CinemaProject.DAL.Handlers;
 using System;
 using System.Collections.Generic;
