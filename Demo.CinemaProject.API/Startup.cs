@@ -31,7 +31,9 @@ namespace Demo.CinemaProject.API
                 options.AddDefaultPolicy(
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:4200");
+                        builder.AllowAnyOrigin()            //Autorise le CORS, peu importe l'origine
+                                .AllowAnyMethod()           // peu importe la méthode,
+                                .AllowAnyHeader();          // peu importe les données dans le header.
                     });
             });
 
